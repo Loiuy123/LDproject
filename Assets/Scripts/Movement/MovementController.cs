@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 [RequireComponent(typeof(Rigidbody2D))]
 public class MovementController : MonoBehaviour
@@ -13,6 +14,8 @@ public class MovementController : MonoBehaviour
 
     public ParticleSystem particleSystemA;
     public ParticleSystem particleSystemB;
+
+    public GameObject deadEffect;
 
     void Start()
     {
@@ -47,5 +50,26 @@ public class MovementController : MonoBehaviour
             body.AddTorque(-RotationForce);
         }
 
+    }
+
+    public IEnumerator SpeedBoost()
+    {
+        FrontForce *= 2.5f;
+        yield return new WaitForSeconds(2f);
+        FrontForce /= 2.5f;
+        yield return null;
+    }
+
+    public void OnCollisionEnter2D(Collision2D collision)
+    {
+        SoundManager.soundManager.PlaySound(SoundManager.soundManager.hit);
+    }
+
+    public void Die()
+    {
+        SoundManager.soundManager.PlaySound(SoundManager.soundManager.death);
+        GameObject effect = Instantiate(deadEffect.gameObject, transform.position, Quaternion.identity);
+        Destroy(effect.gameObject, 5f);
+        Destroy(gameObject);
     }
 }
