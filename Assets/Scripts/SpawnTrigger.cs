@@ -4,15 +4,11 @@ using UnityEngine;
 
 public class SpawnTrigger : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+
+    public int Index;
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        
+        RoundManager.Current.PlayerSpawnTriggerEnter(Index);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }
