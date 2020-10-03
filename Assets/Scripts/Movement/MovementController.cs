@@ -11,6 +11,9 @@ public class MovementController : MonoBehaviour
     public float FrontForce;
     public float RotationForce;
 
+    public ParticleSystem particleSystemA;
+    public ParticleSystem particleSystemB;
+
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
@@ -18,11 +21,11 @@ public class MovementController : MonoBehaviour
 
     void Update()
     {
-
-
-
-
-        
+        if (Input.GetKeyUp(KeyCode.W))
+        {
+            particleSystemA.Stop();
+            particleSystemB.Stop();
+        }
     }
 
     private void FixedUpdate()
@@ -31,6 +34,8 @@ public class MovementController : MonoBehaviour
         if (Input.GetKeyDown( KeyCode.W)|| Input.GetKey(KeyCode.W))
         {
             body.AddForce(transform.up * FrontForce, ForceMode2D.Force);
+            particleSystemA.Play();
+            particleSystemB.Play();
         }
 
         if (Input.GetKeyDown( KeyCode.A)||Input.GetKey(KeyCode.A))
@@ -43,8 +48,4 @@ public class MovementController : MonoBehaviour
         }
 
     }
-
-
-
-
 }
