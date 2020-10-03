@@ -10,10 +10,20 @@ public class MovementPlayback : MonoBehaviour
     public int lastIndex = 0;
 
     public bool Loop = false;
+    Rigidbody2D body;
+
+    public static float SpeedUp = 1;
+
+    public int ID = 0;
+
+    private void Start()
+    {
+        body = GetComponent<Rigidbody2D>();
+    }
 
     public int GetMaxIndex(float time)
     {
-        for (int i = 0; i < Data.Data.Count; i++)
+        for (int i = lastIndex; i < Data.Data.Count; i++)
         {
             if (time<Data[i].Time)
             {
@@ -23,11 +33,16 @@ public class MovementPlayback : MonoBehaviour
         return -1;
     }
 
+    public float CalculateSpeedFactor()
+    {
+        return (1 + (1 -((float)ID / RoundManager.lastId)))* SpeedUp;
+    }
+
     void Update()
     {
         if (Data != null)
         {
-            replayTime += Time.deltaTime;
+            replayTime += Time.deltaTime ;
 
             int nextIndex = GetMaxIndex(replayTime);
 
@@ -61,8 +76,8 @@ public class MovementPlayback : MonoBehaviour
         }        
     }
     public void ApplyPosition(Vector2 pos, Quaternion rotation)
-    { 
-        transform.position = pos;
-        transform.rotation = rotation;
+    {
+        body.MovePosition(pos);
+        body.MoveRotation(rotation);
     }
 }
