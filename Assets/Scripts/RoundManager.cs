@@ -25,6 +25,9 @@ public class RoundManager : MonoBehaviour
     public Region CurrentPlayerPos = Region.Goal;
 
 
+    public int LastCheckPointIndex = 0;
+
+
     public static int lastId = 0;
 
 
@@ -39,27 +42,30 @@ public class RoundManager : MonoBehaviour
     internal void CheckEnter(int Index)
     {
         CurrentPlayerPos = Region.Check;
+        LastCheckPointIndex = Index;
     }
 
     internal void PlayerSpawnTriggerEnter(int Index)
     {
-        if (CurrentPlayerPos == Region.Check)
+        if (CurrentPlayerPos == Region.Check && Index- LastCheckPointIndex <2)
         {
             // spawn new player
             SpawnNewCopy();
         }
         CurrentPlayerPos = Region.Spawn;
+        LastCheckPointIndex = Index;
     }
 
     internal void GoalTriggerEnter(int Index)
     {
-        if (CurrentPlayerPos == Region.Spawn)
+        if (CurrentPlayerPos == Region.Spawn && Index - LastCheckPointIndex < 2)
         {
             // we can make the player faster
             Player.GetComponent<MovementController>().FrontForce *= 1.1f;
             MovementPlayback.SpeedUp += 0.2f;
         }
         CurrentPlayerPos = Region.Goal;
+        LastCheckPointIndex = Index;
     }
 
 
