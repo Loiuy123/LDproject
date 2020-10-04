@@ -70,7 +70,13 @@ public class MovementController : MonoBehaviour
         SoundManager.soundManager.PlaySound(SoundManager.soundManager.death);
         GameObject effect = Instantiate(deadEffect.gameObject, transform.position, Quaternion.identity);
         Destroy(effect.gameObject, 5f);
-        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().name);
-        Destroy(gameObject);
+        
+        RoundManager.Current.StartCoroutine(WaitDeath());
+    }
+    public IEnumerator WaitDeath()
+    {
+        gameObject.SetActive(false);
+        yield return new WaitForSeconds(2.5f);
+        UnityEngine.SceneManagement.SceneManager.LoadScene(UnityEngine.SceneManagement.SceneManager.GetActiveScene().buildIndex);
     }
 }
