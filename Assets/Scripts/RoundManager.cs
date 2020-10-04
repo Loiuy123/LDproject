@@ -87,35 +87,41 @@ public class RoundManager : MonoBehaviour
 
     internal void CheckEnter(int Index)
     {
-        CurrentPlayerPos = Region.Check;
-        LastCheckPointIndex = Index;
+        if (LastCheckPointIndex < Index || (LastCheckPointIndex > 1 && Index == 0))
+        {
+            CurrentPlayerPos = Region.Check;
+            LastCheckPointIndex = Index;
+        }
     }
 
     internal void PlayerSpawnTriggerEnter(int Index)
     {
-        if (CurrentPlayerPos == Region.Check && Index- LastCheckPointIndex <2)
+        if (LastCheckPointIndex < Index || (LastCheckPointIndex > 1 && Index == 0))
         {
             // spawn new player
             SpawnNewCopy();
+
+            CurrentPlayerPos = Region.Spawn;
+            LastCheckPointIndex = Index;
         }
-        CurrentPlayerPos = Region.Spawn;
-        LastCheckPointIndex = Index;
     }
 
     internal void GoalTriggerEnter(int Index)
     {
-        if (CurrentPlayerPos == Region.Spawn && Index - LastCheckPointIndex < 2)
+        if (LastCheckPointIndex < Index || (LastCheckPointIndex > 1 && Index == 0))
         {
             // we can make the player faster
             CurrentLap++;
-            if (CurrentLap>RequiredLaps)
+            if (CurrentLap > RequiredLaps)
             {
                 CompleteLevel();
             }
-            Player.GetComponent<MovementController>().FrontForce *= 1.1f;            
+            Player.GetComponent<MovementController>().FrontForce *= 1.1f;
+
+            CurrentPlayerPos = Region.Goal;
+            LastCheckPointIndex = Index;
         }
-        CurrentPlayerPos = Region.Goal;
-        LastCheckPointIndex = Index;
+        
     }
 
 
