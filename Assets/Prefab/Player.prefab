@@ -4880,15 +4880,14 @@ GameObject:
   - component: {fileID: 3045272524149322576}
   - component: {fileID: 3045272524149322579}
   - component: {fileID: 3045272524149322589}
-  - component: {fileID: 3045272524149322578}
-  - component: {fileID: 3045272524149322577}
+  - component: {fileID: 8850602571118645263}
   m_Layer: 8
   m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &3045272524149322588
 Transform:
   m_ObjectHideFlags: 0
@@ -4938,7 +4937,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FrontForce: 20
-  RotationForce: 10
+  RotationForce: 5
   particleSystemA: {fileID: 3045272524212337915}
   particleSystemB: {fileID: 3045272522854780520}
   deadEffect: {fileID: 4949423627163994184, guid: 9fdaee48aba6fe345ab52ee984dcf82e,
@@ -4957,8 +4956,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   T: 0
   Prefab: {fileID: 5505432365140194097, guid: 2f8630f3ea975194d95c4f1b037f0fce, type: 3}
---- !u!68 &3045272524149322578
-EdgeCollider2D:
+--- !u!60 &8850602571118645263
+PolygonCollider2D:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
@@ -4966,41 +4965,27 @@ EdgeCollider2D:
   m_GameObject: {fileID: 3045272524149322591}
   m_Enabled: 1
   m_Density: 1
-  m_Material: {fileID: 6200000, guid: 4ef7b64ab7353a74a88c7bdade9b7e4c, type: 2}
+  m_Material: {fileID: 0}
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
   m_Points:
-  - {x: 0.7995049, y: 0.0023380518}
-  - {x: 0.0067198277, y: 0.8537789}
-  - {x: -0.86378706, y: -0.006637424}
-  - {x: -0.0006315708, y: 0.23324722}
-  - {x: 0.8445171, y: -0.007742226}
-  - {x: 0.5, y: 0}
---- !u!68 &3045272524149322577
-EdgeCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3045272524149322591}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 6200000, guid: 4ef7b64ab7353a74a88c7bdade9b7e4c, type: 2}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: 0.7995049, y: 0.0023380518}
-  - {x: 0.0067198277, y: 0.8537789}
-  - {x: -0.86378706, y: -0.006637424}
-  - {x: -0.0006315708, y: 0.23324722}
-  - {x: 0.8445171, y: -0.007742226}
-  - {x: 0.5, y: 0}
+    m_Paths:
+    - - {x: -0.0038987403, y: 0.84794724}
+      - {x: -0.8457891, y: -0.010684133}
+      - {x: -0.58388716, y: 0.07211012}
+      - {x: 0.61117846, y: 0.09550387}
+      - {x: 0.826295, y: 0.008809209}
 --- !u!1 &3045272524212337892
 GameObject:
   m_ObjectHideFlags: 0
