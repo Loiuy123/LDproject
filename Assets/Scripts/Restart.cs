@@ -27,5 +27,9 @@ public class Restart : MonoBehaviour
                 SceneManager.LoadScene(SceneToReset);
             }            
         }
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
     }
 }
