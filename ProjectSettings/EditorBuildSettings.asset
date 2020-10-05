@@ -11,34 +11,37 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/CircleTrack/CircleTrack-1.unity
     guid: b0a52db9ce7aec44bbc4dcfdc43269a0
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
-  - enabled: 0
-    path: 
-    guid: 00000000000000000000000000000000
   - enabled: 1
     path: Assets/Scenes/CircleTrack/CircleTrack-2.unity
     guid: 61c35113e2f27f041bb94e23a9978415
   - enabled: 1
     path: Assets/Scenes/CircleTrack/CircleTrack-3.unity
-    guid: a949cd9147c98bc49baa6200cc2cca6c
+    guid: b2280e3c274b95b40bd8961e7620dfbd
   - enabled: 1
     path: Assets/Scenes/Rectangle8Track/Rectangle8-1.unity
     guid: b5b8df0516caaae40a87ad7aae8d818a
   - enabled: 1
     path: Assets/Scenes/Rectangle8Track/Rectangle8-2.unity
-    guid: cf360018fdc2dc146b208e137bd8e1b0
+    guid: 783c37b834d021749b61ed77b20a31f5
   - enabled: 1
     path: Assets/Scenes/Rectangle8Track/Rectangle8-3.unity
-    guid: 1d6ef5b7c322e4941b4b638b5be8c56c
+    guid: ac8265a55f2a41b4db97e3c113b6b230
   - enabled: 1
-    path: Assets/Scenes/DeadRoad/DeadRoad.unity
+    path: Assets/Scenes/DeadRoad/Road-1.unity
     guid: 3c055bd9bb001ac4891a56220b072d6b
+  - enabled: 1
+    path: Assets/Scenes/DeadRoad/Road-2.unity
+    guid: 8339180d5df08a24e960c314acb1589d
+  - enabled: 1
+    path: Assets/Scenes/Waving/Waving-1.unity
+    guid: db5c7e7e3cf56a2478bb9b12c39e6847
   - enabled: 1
     path: Assets/Scenes/Waving/Waving-2.unity
     guid: 32e521f2100f8984f97ed71b9122f542
   - enabled: 1
     path: Assets/Scenes/Waving/Waving-3.unity
     guid: 20104c0a8d657f544b0b7172211f44bf
+  - enabled: 1
+    path: Assets/Scenes/The Credits.unity
+    guid: 552ad1905411e7e44a6f5c2da1fd06ad
   m_configObjects: {}

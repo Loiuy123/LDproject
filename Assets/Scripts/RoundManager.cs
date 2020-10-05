@@ -22,6 +22,7 @@ public class RoundManager : MonoBehaviour
     public TMPro.TMP_Text LapText;
     public TMPro.TMP_Text Speed;
     public TMPro.TMP_Text TimeText;
+    public TMPro.TMP_Text LevelName;
 
     public System.Diagnostics.Stopwatch TimeTracker;
     
@@ -40,6 +41,12 @@ public class RoundManager : MonoBehaviour
 
 
 
+    public float LapModMult = 1.1f;
+    public float LapModAdd = 0;
+
+    public float ReplaySpeed = 0.8f;
+
+
     public int RequiredLaps = 2;
     public int CurrentLap = 1;
 
@@ -51,8 +58,9 @@ public class RoundManager : MonoBehaviour
         {
             PlayerRigid = Player.GetComponent<Rigidbody2D>();
         }
-        Speed.text = ""+PlayerRigid.velocity.magnitude;
+        Speed.text =(PlayerRigid.velocity.magnitude * 30).ToString("0.0");
         TimeText.text = TimeTracker.Elapsed.ToString(@"mm\:ss\:fff");
+        LevelName.text = SceneManager.GetActiveScene().name;
         //TimeText.text = TimeTracker.Elapsed.Minutes.ToString("") + ":" + TimeTracker.Elapsed.Seconds+":" + TimeTracker.Elapsed.Milliseconds;
     }
 
@@ -87,7 +95,7 @@ public class RoundManager : MonoBehaviour
 
     internal void CheckEnter(int Index)
     {
-        if (LastCheckPointIndex < Index || (LastCheckPointIndex > 1 && Index == 0))
+        if (Index - LastCheckPointIndex ==1 || (LastCheckPointIndex > 1 && Index == 0))
         {
             CurrentPlayerPos = Region.Check;
             LastCheckPointIndex = Index;
@@ -96,7 +104,7 @@ public class RoundManager : MonoBehaviour
 
     internal void PlayerSpawnTriggerEnter(int Index)
     {
-        if (LastCheckPointIndex < Index || (LastCheckPointIndex > 1 && Index == 0))
+        if (Index - LastCheckPointIndex == 1 || (LastCheckPointIndex > 1 && Index == 0))
         {
             // spawn new player
             SpawnNewCopy();
@@ -108,7 +116,7 @@ public class RoundManager : MonoBehaviour
 
     internal void GoalTriggerEnter(int Index)
     {
-        if (LastCheckPointIndex < Index || (LastCheckPointIndex > 1 && Index == 0))
+        if (Index - LastCheckPointIndex == 1 || (LastCheckPointIndex > 1 && Index == 0))
         {
             // we can make the player faster
             CurrentLap++;
@@ -116,7 +124,7 @@ public class RoundManager : MonoBehaviour
             {
                 CompleteLevel();
             }
-            Player.GetComponent<MovementController>().FrontForce *= 1.1f;
+            Player.GetComponent<MovementController>().FrontForce = Player.GetComponent<MovementController>().FrontForce * LapModMult + LapModAdd;
 
             CurrentPlayerPos = Region.Goal;
             LastCheckPointIndex = Index;

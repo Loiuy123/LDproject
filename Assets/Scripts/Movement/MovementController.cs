@@ -7,7 +7,12 @@ using Cinemachine;
 public class MovementController : MonoBehaviour
 {
 
+    public static MovementController Current;
+
     Rigidbody2D body;
+    public SpriteRenderer Renderer;
+
+    Color og; 
 
     public float FrontForce;
     public float RotationForce;
@@ -17,6 +22,21 @@ public class MovementController : MonoBehaviour
 
     public GameObject deadEffect;
 
+    public float CanThrust = 0;
+    public void DisableThrust(float time)
+    {
+        particleSystemA.Stop();
+        particleSystemB.Stop();
+        CanThrust = time;
+        Renderer.color = Color.gray;
+    }
+
+    private void Awake()
+    {
+        Current = this;
+        og = Renderer.color;
+    }
+
     void Start()
     {
         body = GetComponent<Rigidbody2D>();
@@ -24,6 +44,19 @@ public class MovementController : MonoBehaviour
 
     void Update()
     {
+        if (CanThrust>0)
+        {
+            CanThrust -= Time.deltaTime;
+            if (CanThrust<=0)
+            {
+                Renderer.color = og;
+            }
+        }
+        else
+        {
+            CanThrust -= Time.deltaTime;
+        }
+        
         if (Input.GetKeyUp(KeyCode.W))
         {
             particleSystemA.Stop();
@@ -34,7 +67,7 @@ public class MovementController : MonoBehaviour
     private void FixedUpdate()
     {
 
-        if (Input.GetKeyDown( KeyCode.W)|| Input.GetKey(KeyCode.W))
+        if ((Input.GetKeyDown( KeyCode.W)|| Input.GetKey(KeyCode.W)) && CanThrust <= 0)
         {
             body.AddForce(transform.up * FrontForce, ForceMode2D.Force);
             particleSystemA.Play();
@@ -63,6 +96,10 @@ public class MovementController : MonoBehaviour
     public void OnCollisionEnter2D(Collision2D collision)
     {
         SoundManager.soundManager.PlaySound(SoundManager.soundManager.hit);
+        if (collision.gameObject.layer == 12)
+        {
+            DisableThrust(0.5f);
+        }
     }
 
     public void Die()

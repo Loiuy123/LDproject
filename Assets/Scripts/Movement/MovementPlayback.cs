@@ -42,7 +42,7 @@ public class MovementPlayback : MonoBehaviour
     {
         if (Data != null)
         {
-            replayTime += Time.deltaTime*0.8f ;
+            replayTime += Time.deltaTime*RoundManager.Current.ReplaySpeed;
 
             int nextIndex = GetMaxIndex(replayTime);
 
